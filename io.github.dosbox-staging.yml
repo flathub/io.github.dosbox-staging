@@ -18,6 +18,8 @@ finish-args:
   - --socket=pulseaudio
   - --filesystem=home
 
+cleanup:
+  - /include
 modules:
   - name: fluidsynth
     buildsystem: cmake
