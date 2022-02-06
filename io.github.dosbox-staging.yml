@@ -12,40 +12,75 @@ build_options:
 
 finish-args:
   - --device=all # we need OpenGL and controller access
-  - --share=network # IPX and serial port emulation over UDP
-  - --socket=x11 # default to X11, as Gnome does not provide SSD
+  - --share=network # IPX, libslirp and serial port emulation over UDP
+  - --socket=x11 # default to X11 for now until the next SDL2 release
   - --share=ipc # necessary for x11
   - --socket=pulseaudio
   - --filesystem=home
 
 modules:
 
-  # - "shared-modules/linux-audio/fluidsynth2.json"
+  # Build FluidSynth
+  - "shared-modules/linux-audio/fluidsynth2.json"
 
+  # Building mt32emu for MT-32 MIDI emulation
+  - name: mt32emu
+    buildsystem: cmake-ninja
+    config-opts:
+      - -Dmunt_WITH_MT32EMU_SMF2WAV=FALSE
+      - -Dmunt_WITH_MT32EMU_QT=FALSE
+      - -Dlibmt32emu_WITH_VERSION_TAGGING=TRUE
+      - -Dlibmt32emu_WITH_SYMBOL_VERSIONING=TRUE
+    sources:
+      - type: archive
+        url: https://github.com/munt/munt/archive/libmt32emu_2_5_3.tar.gz
+        sha256: 062d110bbdd7253d01ef291f57e89efc3ee35fd087587458381f054bac49a8f5
+        x-checker-data:
+          type: anitya
+          project-id: 220368
+          url-template: https://github.com/munt/munt/archive/libmt32emu_$version.tar.gz
+
+  # Build libslirp for networking
+  - name: libslirp
+    buildsystem: meson
+    cleanup:
+      - "/include"
+      - "/lib/pkgconfig"
+    sources:
+      - type: archive
+        url: https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v4.6.1/libslirp-v4.6.1.tar.gz
+        sha256: 69ad4df0123742a29cc783b35de34771ed74d085482470df6313b6abeb799b11
+        x-checker-data:
+          type: anitya
+          project-id: 96796
+          url-template: https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v$version/libslirp-v$version.tar.gz
+
+  # Build DOSBox-Staging
   - name: dosbox-staging
+
+    buildsystem: meson
+    config-opts:
+      - "-Dbuildtype=release"
 
     sources:
       - type: archive
-        url: https://github.com/dosbox-staging/dosbox-staging/archive/v0.76.0.tar.gz
-        sha256: 7df53c22f7ce78c70afb60b26b06742b90193b56c510219979bf12e0bb2dc6c7
-
-    config-opts:
-      - --disable-fluidsynth
-
-    make-args:
-      - V=1
+        url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.78.1.tar.gz
+        sha256: dcd93ce27f5f3f31e7022288f7cbbc1f1f6eb7cc7150c2c085eeff8ba76c3690
+        x-checker-data:
+          type: anitya
+          project-id: 234902
+          url-template: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v$version.tar.gz
 
     post-install:
       # icons
-      - make -C contrib/icons hicolor
-      - install -p -D -m 0644 "contrib/icons/hicolor/16x16/apps/dosbox-staging.png"    "/app/share/icons/hicolor/16x16/apps/${FLATPAK_ID}.png"
-      - install -p -D -m 0644 "contrib/icons/hicolor/22x22/apps/dosbox-staging.png"    "/app/share/icons/hicolor/22x22/apps/${FLATPAK_ID}.png"
-      - install -p -D -m 0644 "contrib/icons/hicolor/24x24/apps/dosbox-staging.png"    "/app/share/icons/hicolor/24x24/apps/${FLATPAK_ID}.png"
-      - install -p -D -m 0644 "contrib/icons/hicolor/32x32/apps/dosbox-staging.png"    "/app/share/icons/hicolor/32x32/apps/${FLATPAK_ID}.png"
-      - install -p -D -m 0644 "contrib/icons/hicolor/scalable/apps/dosbox-staging.svg" "/app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg"
+      - install -p -D -m 0644 "/app/share/icons/hicolor/16x16/apps/dosbox-staging.png"    "/app/share/icons/hicolor/16x16/apps/${FLATPAK_ID}.png"
+      - install -p -D -m 0644 "/app/share/icons/hicolor/22x22/apps/dosbox-staging.png"    "/app/share/icons/hicolor/22x22/apps/${FLATPAK_ID}.png"
+      - install -p -D -m 0644 "/app/share/icons/hicolor/24x24/apps/dosbox-staging.png"    "/app/share/icons/hicolor/24x24/apps/${FLATPAK_ID}.png"
+      - install -p -D -m 0644 "/app/share/icons/hicolor/32x32/apps/dosbox-staging.png"    "/app/share/icons/hicolor/32x32/apps/${FLATPAK_ID}.png"
+      - install -p -D -m 0644 "/app/share/icons/hicolor/scalable/apps/dosbox-staging.svg" "/app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg"
       # desktop entry
-      - install -p -D -m 0644 "contrib/linux/dosbox-staging.desktop"                   "/app/share/applications/${FLATPAK_ID}.desktop"
-      - desktop-file-edit --set-key=Icon --set-value=${FLATPAK_ID}                     "/app/share/applications/${FLATPAK_ID}.desktop"
+      - install -p -D -m 0644 "/app/share/applications/dosbox-staging.desktop"            "/app/share/applications/${FLATPAK_ID}.desktop"
+      - desktop-file-edit --set-key=Icon --set-value=${FLATPAK_ID}                        "/app/share/applications/${FLATPAK_ID}.desktop"
       # metainfo
-      - sed -i s/dosbox-staging.desktop/${FLATPAK_ID}.desktop/ contrib/linux/dosbox-staging.metainfo.xml
-      - install -p -D -m 0644 "contrib/linux/dosbox-staging.metainfo.xml"              "/app/share/metainfo/${FLATPAK_ID}.metainfo.xml"
+      - sed -i s/dosbox-staging.desktop/${FLATPAK_ID}.desktop/ /app/share/metainfo/dosbox-staging.metainfo.xml
+      - install -p -D -m 0644 "/app/share/metainfo/dosbox-staging.metainfo.xml"           "/app/share/metainfo/${FLATPAK_ID}.metainfo.xml"
