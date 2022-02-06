@@ -12,8 +12,8 @@ build_options:
 
 finish-args:
   - --device=all # we need OpenGL and controller access
-  - --share=network # IPX and serial port emulation over UDP
-  - --socket=x11 # default to X11, as Gnome does not provide SSD
+  - --share=network # IPX, libslirp and serial port emulation over UDP
+  - --socket=x11 # default to X11 for now until the next SDL2 release
   - --share=ipc # necessary for x11
   - --socket=pulseaudio
   - --filesystem=home
@@ -25,16 +25,20 @@ modules:
 
   # Building mt32emu for MT-32 MIDI emulation
   - name: mt32emu
-    buildsystem: cmake
+    buildsystem: cmake-ninja
     config-opts:
       - -Dmunt_WITH_MT32EMU_SMF2WAV=FALSE
       - -Dmunt_WITH_MT32EMU_QT=FALSE
       - -Dlibmt32emu_WITH_VERSION_TAGGING=TRUE
       - -Dlibmt32emu_WITH_SYMBOL_VERSIONING=TRUE
     sources:
-      - type: git
-        url: https://github.com/munt/munt
-        tag: "libmt32emu_2_5_3"
+      - type: archive
+        url: https://github.com/munt/munt/archive/libmt32emu_2_5_3.tar.gz
+        sha256: 062d110bbdd7253d01ef291f57e89efc3ee35fd087587458381f054bac49a8f5
+        x-checker-data:
+          type: anitya
+          project-id: 220368
+          url-template: https://github.com/munt/munt/archive/libmt32emu_$version.tar.gz
 
   # Build libslirp for networking
   - name: libslirp
@@ -43,9 +47,13 @@ modules:
       - "/include"
       - "/lib/pkgconfig"
     sources:
-      - type: git
-        url: https://gitlab.freedesktop.org/slirp/libslirp
-        tag: "v4.6.1"
+      - type: archive
+        url: https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v4.6.1/libslirp-v4.6.1.tar.gz
+        sha256: 69ad4df0123742a29cc783b35de34771ed74d085482470df6313b6abeb799b11
+        x-checker-data:
+          type: anitya
+          project-id: 96796
+          url-template: https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v$version/libslirp-v$version.tar.gz
 
   # Build DOSBox-Staging
   - name: dosbox-staging
@@ -55,9 +63,13 @@ modules:
       - "-Dbuildtype=release"
 
     sources:
-      - type: git
-        url: https://github.com/dosbox-staging/dosbox-staging
-        tag: v0.78.1
+      - type: archive
+        url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.78.1.tar.gz
+        sha256: dcd93ce27f5f3f31e7022288f7cbbc1f1f6eb7cc7150c2c085eeff8ba76c3690
+        x-checker-data:
+          type: anitya
+          project-id: 234902
+          url-template: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v$version.tar.gz
 
     post-install:
       # icons
