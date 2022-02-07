@@ -10,6 +10,9 @@ build_options:
   cflags: -O3
   cxxflags: -O3
 
+rename-desktop-file: dosbox-staging.desktop
+rename-icon: dosbox-staging
+
 finish-args:
   - --device=all # we need OpenGL and controller access
   - --share=network # IPX, libslirp and serial port emulation over UDP
@@ -57,11 +60,9 @@ modules:
 
   # Build DOSBox-Staging
   - name: dosbox-staging
-
     buildsystem: meson
     config-opts:
       - "-Dbuildtype=release"
-
     sources:
       - type: archive
         url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.78.1.tar.gz
@@ -70,17 +71,14 @@ modules:
           type: anitya
           project-id: 234902
           url-template: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v$version.tar.gz
-
-    post-install:
-      # icons
-      - install -p -D -m 0644 "/app/share/icons/hicolor/16x16/apps/dosbox-staging.png"    "/app/share/icons/hicolor/16x16/apps/${FLATPAK_ID}.png"
-      - install -p -D -m 0644 "/app/share/icons/hicolor/22x22/apps/dosbox-staging.png"    "/app/share/icons/hicolor/22x22/apps/${FLATPAK_ID}.png"
-      - install -p -D -m 0644 "/app/share/icons/hicolor/24x24/apps/dosbox-staging.png"    "/app/share/icons/hicolor/24x24/apps/${FLATPAK_ID}.png"
-      - install -p -D -m 0644 "/app/share/icons/hicolor/32x32/apps/dosbox-staging.png"    "/app/share/icons/hicolor/32x32/apps/${FLATPAK_ID}.png"
-      - install -p -D -m 0644 "/app/share/icons/hicolor/scalable/apps/dosbox-staging.svg" "/app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg"
-      # desktop entry
-      - install -p -D -m 0644 "/app/share/applications/dosbox-staging.desktop"            "/app/share/applications/${FLATPAK_ID}.desktop"
-      - desktop-file-edit --set-key=Icon --set-value=${FLATPAK_ID}                        "/app/share/applications/${FLATPAK_ID}.desktop"
-      # metainfo
-      - sed -i s/dosbox-staging.desktop/${FLATPAK_ID}.desktop/ /app/share/metainfo/dosbox-staging.metainfo.xml
-      - install -p -D -m 0644 "/app/share/metainfo/dosbox-staging.metainfo.xml"           "/app/share/metainfo/${FLATPAK_ID}.metainfo.xml"
+    
+  # Temporary workaround because of missing upstream meta info
+  - name: metadata
+    buildsystem: simple
+    build-commands:
+      - rm /app/share/metainfo/dosbox-staging.metainfo.xml
+      - install -p -D -m 0644 ./dosbox-staging.metainfo.xml "/app/share/metainfo/${FLATPAK_ID}.metainfo.xml"
+    sources:
+      - type: file
+        url: https://raw.githubusercontent.com/dosbox-staging/dosbox-staging/main/contrib/linux/dosbox-staging.metainfo.xml
+        sha256: 1a6fab3761325c44bffc9ceb9940335d0abfe373801e666a92c5e1313904c269
