@@ -65,11 +65,11 @@ then enter the following commands in a terminal:
 git clone --recursive https://github.com/flathub/io.github.dosbox-staging.git
 cd io.github.dosbox-staging
 flatpak install flathub org.freedesktop.Sdk//21.08 -y
-flatpak-builder --force-clean --install --user -y builddir io.github.dosbox-staging.yaml
+flatpak-builder --force-clean --install --user -y build-dir io.github.dosbox-staging.yaml
 ```
 
 If all goes well, the Flatpak will be installed after building. You can then
 run it using your desktop environment's application launcher.
 
 You can speed up incremental builds by installing [ccache](https://ccache.dev/)
-and specifying `--ccache` in the flatpak-builder command line (before `builddir`).
+and specifying `--ccache` in the flatpak-builder command line (before `build-dir`).
