@@ -23,10 +23,10 @@ finish-args:
 
 modules:
 
-  # Build FluidSynth
+  # Build FluidSynth for General MIDI emulation
   - "shared-modules/linux-audio/fluidsynth2.json"
 
-  # Building mt32emu for MT-32 MIDI emulation
+  # Build mt32emu for MT-32 MIDI emulation
   - name: mt32emu
     buildsystem: cmake-ninja
     config-opts:
@@ -43,7 +43,7 @@ modules:
           project-id: 220368
           url-template: https://github.com/munt/munt/archive/libmt32emu_$version.tar.gz
 
-  # Build libslirp for networking
+  # Build libslirp for TCP/IP networking
   - name: libslirp
     buildsystem: meson
     cleanup:
