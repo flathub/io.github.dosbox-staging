@@ -24,7 +24,7 @@ finish-args:
 modules:
 
   # Build FluidSynth for General MIDI emulation
-  - "shared-modules/linux-audio/fluidsynth2.json"
+  - shared-modules/linux-audio/fluidsynth2.json
 
   # Build mt32emu for MT-32 MIDI emulation
   - name: mt32emu
@@ -36,8 +36,8 @@ modules:
       - -Dlibmt32emu_WITH_SYMBOL_VERSIONING=TRUE
     sources:
       - type: archive
-        url: https://github.com/munt/munt/archive/libmt32emu_2_5_3.tar.gz
-        sha256: 062d110bbdd7253d01ef291f57e89efc3ee35fd087587458381f054bac49a8f5
+        url: https://github.com/munt/munt/archive/libmt32emu_2_6_1.tar.gz
+        sha256: ae0e1c09dc15b6bca1d4d1316bebabb3dd43854ceb3d6e58d82698c854e42033
         x-checker-data:
           type: anitya
           project-id: 220368
@@ -47,8 +47,8 @@ modules:
   - name: libslirp
     buildsystem: meson
     cleanup:
-      - "/include"
-      - "/lib/pkgconfig"
+      - /include
+      - /lib/pkgconfig
     sources:
       - type: archive
         url: https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v4.6.1/libslirp-v4.6.1.tar.gz
@@ -62,7 +62,7 @@ modules:
   - name: dosbox-staging
     buildsystem: meson
     config-opts:
-      - "-Dbuildtype=release"
+      - -Dbuildtype=release
     sources:
       - type: archive
         url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.78.1.tar.gz
@@ -71,7 +71,7 @@ modules:
           type: anitya
           project-id: 234902
           url-template: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v$version.tar.gz
-    
+
   # Temporary workaround because of missing upstream meta info
   - name: metadata
     buildsystem: simple
