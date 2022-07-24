@@ -81,4 +81,4 @@ modules:
     sources:
       - type: file
         url: https://raw.githubusercontent.com/dosbox-staging/dosbox-staging/main/contrib/linux/dosbox-staging.metainfo.xml
-        sha256: 1a6fab3761325c44bffc9ceb9940335d0abfe373801e666a92c5e1313904c269
+        sha256: dcb339ff6cea46db6400789387631b400988b805dade511afee90bbb910de890
