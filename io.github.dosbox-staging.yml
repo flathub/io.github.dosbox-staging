@@ -41,7 +41,7 @@ modules:
   # Speexdsp
   - name: speexdsp
     buildsystem: autotools
-    sources: 
+    sources:
       - type: archive
         url: https://github.com/xiph/speexdsp/archive/refs/tags/SpeexDSP-1.2.1.tar.gz
         sha256: d17ca363654556a4ff1d02cc13d9eb1fc5a8642c90b40bd54ce266c3807b91a7
@@ -89,8 +89,8 @@ modules:
       - -Dbuildtype=release
     sources:
       - type: archive
-        url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.79.0.tar.gz
-        sha256: 4c45dff631b6edbcec76f88be6e800b373d0303ef66189a6769a5a18fef106f2
+        url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.78.1.tar.gz
+        sha256: dcd93ce27f5f3f31e7022288f7cbbc1f1f6eb7cc7150c2c085eeff8ba76c3690
         x-checker-data:
           type: anitya
           project-id: 234902
