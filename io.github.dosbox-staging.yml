@@ -71,14 +71,3 @@ modules:
           type: anitya
           project-id: 234902
           url-template: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v$version.tar.gz
-
-  # Temporary workaround because of missing upstream meta info
-  - name: metadata
-    buildsystem: simple
-    build-commands:
-      - rm /app/share/metainfo/dosbox-staging.metainfo.xml
-      - install -p -D -m 0644 ./dosbox-staging.metainfo.xml "/app/share/metainfo/${FLATPAK_ID}.metainfo.xml"
-    sources:
-      - type: file
-        url: https://raw.githubusercontent.com/dosbox-staging/dosbox-staging/main/contrib/linux/dosbox-staging.metainfo.xml
-        sha256: dcb339ff6cea46db6400789387631b400988b805dade511afee90bbb910de890
