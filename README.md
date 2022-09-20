@@ -37,7 +37,6 @@ flatpak update
 - Likewise, there is no way to access system installed MIDI soundfonts under ``/usr``.
   If you want to use such soundfonts, copy them into your home directory and
   specify the location in your DOSBox-Staging config file.
-- On Wayland, DOSBox-Staging will by default run via XWayland. This is because there are some issues with running in fullscreen mode which should be fixed in the next SDL2 release.
 - The SDL2 libraries against which DOSBox-Staging is built are provided by flatpak. This build only supports PulseAudio and dummy sound options, and likewise only supports X11, Wayland and dummy video options.
   - You will need a working PulseAudio (or PipeWire) setup on the host, or DOSBox-Staging will not start. If you don't care for audio, you can use the dummy SDL audio driver once you installed the flatpak by running:
     - ``flatpak override --env=SDL_AUDIODRIVER=dummy io.github.dosbox-staging``

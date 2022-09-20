@@ -14,10 +14,11 @@ rename-desktop-file: dosbox-staging.desktop
 rename-icon: dosbox-staging
 
 finish-args:
-  - --device=all # we need OpenGL and controller access
-  - --share=network # IPX, libslirp and serial port emulation over UDP
-  - --socket=x11 # default to X11 for now until the next SDL2 release
-  - --share=ipc # necessary for x11
+  - --device=all     # we need OpenGL and controller access
+  - --share=network  # IPX, libslirp and serial port emulation over UDP
+  - --socket=x11     # X11 output support
+  - --socket=wayland # Wayland output support
+  - --share=ipc      # necessary for x11
   - --socket=pulseaudio
   - --filesystem=home
 
@@ -41,6 +42,8 @@ modules:
   # Speexdsp
   - name: speexdsp
     buildsystem: autotools
+    cleanup:
+      - "*.la"
     sources: 
       - type: archive
         url: https://github.com/xiph/speexdsp/archive/refs/tags/SpeexDSP-1.2.1.tar.gz
@@ -66,6 +69,23 @@ modules:
           type: anitya
           project-id: 220368
           url-template: https://github.com/munt/munt/archive/libmt32emu_$version.tar.gz
+  
+  # SDL2 Networking support
+  - name: SDL2_net
+    buildsystem: autotools
+    config-opts:
+      - --disable-static
+      - --disable-gui
+    cleanup:
+      - "*.la"
+    sources:
+      - type: archive
+        url: https://github.com/libsdl-org/SDL_net/archive/refs/tags/release-2.2.0.tar.gz
+        sha256: 08d741282c0c22b82ed134f09cd319803132289cae06fb47b5ada2752faf0493
+        x-checker-data:
+          type: anitya
+          project-id: 4783
+          url-template: https://github.com/libsdl-org/SDL_net/archive/refs/tags/release-$version.tar.gz
 
   # Build libslirp for TCP/IP networking
   - name: libslirp
@@ -87,6 +107,11 @@ modules:
     buildsystem: meson
     config-opts:
       - -Dbuildtype=release
+      - -Ddefault_library=shared
+      - -Dsystem_libraries=speexdsp
+    build-commands:
+      - mkdir /app/bin/resources
+      - cp -va resources/* /app/bin/resources
     sources:
       - type: archive
         url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.79.0.tar.gz
