@@ -105,6 +105,7 @@ modules:
 
   # Build DOSBox-Staging
   - name: dosbox-staging
+    version: 0.79.0
     buildsystem: meson
     config-opts:
       - -Dbuildtype=release
