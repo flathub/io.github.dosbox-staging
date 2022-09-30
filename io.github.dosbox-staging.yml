@@ -110,9 +110,6 @@ modules:
       - -Dbuildtype=release
       - -Ddefault_library=shared
       - -Dsystem_libraries=speexdsp
-    build-commands:
-      - mkdir /app/bin/resources
-      - cp -va resources/* /app/bin/resources
     sources:
       - type: archive
         url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.79.1.tar.gz
