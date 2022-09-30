@@ -105,7 +105,6 @@ modules:
 
   # Build DOSBox-Staging
   - name: dosbox-staging
-    version: 0.79.0
     buildsystem: meson
     config-opts:
       - -Dbuildtype=release
@@ -116,8 +115,8 @@ modules:
       - cp -va resources/* /app/bin/resources
     sources:
       - type: archive
-        url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.79.0.tar.gz
-        sha256: 4c45dff631b6edbcec76f88be6e800b373d0303ef66189a6769a5a18fef106f2
+        url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.79.1.tar.gz
+        sha256: d65c828f538050937fe55002529c21f99fcaad26eda13184eaa6982984627a01
         x-checker-data:
           type: anitya
           project-id: 234902
