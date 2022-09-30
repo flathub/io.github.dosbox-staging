@@ -44,8 +44,8 @@ modules:
   - name: speexdsp
     buildsystem: autotools
     cleanup:
-      - "*.la"
-    sources: 
+      - '*.la'
+    sources:
       - type: archive
         url: https://github.com/xiph/speexdsp/archive/refs/tags/SpeexDSP-1.2.1.tar.gz
         sha256: d17ca363654556a4ff1d02cc13d9eb1fc5a8642c90b40bd54ce266c3807b91a7
@@ -70,7 +70,7 @@ modules:
           type: anitya
           project-id: 220368
           url-template: https://github.com/munt/munt/archive/libmt32emu_$version.tar.gz
-  
+
   # SDL2 Networking support
   - name: SDL2_net
     buildsystem: autotools
@@ -78,7 +78,7 @@ modules:
       - --disable-static
       - --disable-gui
     cleanup:
-      - "*.la"
+      - '*.la'
     sources:
       - type: archive
         url: https://github.com/libsdl-org/SDL_net/archive/refs/tags/release-2.2.0.tar.gz
@@ -112,8 +112,8 @@ modules:
       - -Dsystem_libraries=speexdsp
     sources:
       - type: archive
-        url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.79.1.tar.gz
-        sha256: d65c828f538050937fe55002529c21f99fcaad26eda13184eaa6982984627a01
+        url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.79.0.tar.gz
+        sha256: 4c45dff631b6edbcec76f88be6e800b373d0303ef66189a6769a5a18fef106f2
         x-checker-data:
           type: anitya
           project-id: 234902
