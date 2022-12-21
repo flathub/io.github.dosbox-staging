@@ -26,6 +26,7 @@ finish-args:
 modules:
 
   # Build SDL2 with required modules
+  #  reevaluate if this is required on next runtime upgrade
   - libSDL2.yml
 
   # Build FluidSynth for General MIDI emulation
