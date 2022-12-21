@@ -22,6 +22,7 @@ finish-args:
   - --share=ipc           # necessary for x11
   - --socket=pulseaudio
   - --filesystem=home
+  - --filesystem=xdg-run/pipewire-0:ro
 
 modules:
 

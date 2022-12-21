@@ -41,7 +41,7 @@ flatpak update
   - For audio you will need a working PulseAudio or PipeWire setup on the host. If you don't care for audio, you can use the dummy SDL audio driver once you installed the flatpak by running:
     - ``flatpak override --user --env=SDL_AUDIODRIVER=dummy io.github.dosbox-staging``
   - Also currently SDL2 will not use PipeWire by default, to enable it run:
-    - ``flatpak override --user --env=SDL_AUDIODRIVER=pipewire --filesystem=xdg-run/pipewire-0:ro io.github.dosbox-staging``
+    - ``flatpak override --user --env=SDL_AUDIODRIVER=pipewire io.github.dosbox-staging``
   - For video you will need a working X11 or Wayland setup on the host. Running from a console will not work, as the SDL2 build does not have kms or directfb output enabled. If you run into problems with Wayland, you can force XWayland with:
     - ``flatpak override --user --nosocket=fallback-x11 --nosocket=wayland --socket=x11 --env=SDL_VIDEODRIVER=x11 io.github.dosbox-staging``
 
