@@ -115,8 +115,8 @@ modules:
       - -Dsystem_libraries=speexdsp
     sources:
       - type: archive
-        url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.79.1.tar.gz
-        sha256: 43f23fd0a5cff55e06a3ba2be8403f872ae47423f3bb4f823301eaae8a39ac2f
+        url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.80.0.tar.gz
+        sha256: d4f6a4517402fba9bf81596a591e119062d26c7411c791eb0157cc6c89dfacdf
         x-checker-data:
           type: anitya
           project-id: 234902
