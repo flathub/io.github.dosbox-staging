@@ -22,14 +22,16 @@ finish-args:
   - --share=ipc           # necessary for x11
   - --socket=pulseaudio
   - --filesystem=home
+  - --filesystem=xdg-run/pipewire-0:ro
 
 modules:
 
+  # Build SDL2 with required modules
+  #  reevaluate if this is required on next runtime upgrade
+  - libSDL2.yml
+
   # Build FluidSynth for General MIDI emulation
   - shared-modules/linux-audio/fluidsynth2.json
-
-  # Build SDL2 with libdecor for Wayland support
-  - shared-modules/SDL2/SDL2-2.26.1-with-libdecor.json
 
   # Build iir1 DSP filter lib
   - name: iir1
@@ -74,23 +76,6 @@ modules:
           project-id: 220368
           url-template: https://github.com/munt/munt/archive/libmt32emu_$version.tar.gz
 
-  # SDL2 Networking support
-  - name: SDL2_net
-    buildsystem: autotools
-    config-opts:
-      - --disable-static
-      - --disable-gui
-    cleanup:
-      - '*.la'
-    sources:
-      - type: archive
-        url: https://github.com/libsdl-org/SDL_net/archive/refs/tags/release-2.2.0.tar.gz
-        sha256: 08d741282c0c22b82ed134f09cd319803132289cae06fb47b5ada2752faf0493
-        x-checker-data:
-          type: anitya
-          project-id: 4783
-          url-template: https://github.com/libsdl-org/SDL_net/archive/refs/tags/release-$version.tar.gz
-
   # Build libslirp for TCP/IP networking
   - name: libslirp
     buildsystem: meson
@@ -115,8 +100,8 @@ modules:
       - -Dsystem_libraries=speexdsp
     sources:
       - type: archive
-        url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.79.1.tar.gz
-        sha256: 43f23fd0a5cff55e06a3ba2be8403f872ae47423f3bb4f823301eaae8a39ac2f
+        url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.80.0.tar.gz
+        sha256: d4f6a4517402fba9bf81596a591e119062d26c7411c791eb0157cc6c89dfacdf
         x-checker-data:
           type: anitya
           project-id: 234902
