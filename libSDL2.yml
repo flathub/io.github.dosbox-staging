@@ -1,0 +1,55 @@
+name: libSDL2
+modules:
+  # libdecor for CSD Wayland support
+  - shared-modules/libdecor/libdecor-0.1.1.json
+
+  # SDL2 main library
+  - name: SDL2
+    buildsystem: autotools
+    config-opts:
+      - --disable-static
+      - --disable-gui
+    cleanup:
+      - '*.la'
+    sources:
+      - type: archive
+        url: https://github.com/libsdl-org/SDL/archive/refs/tags/release-2.26.1.tar.gz
+        sha256: 91d8d26fc45a27c215b70090b351fd30e36bfe44bdd940e5db13d5148058d226
+        x-checker-data:
+          type: anitya
+          project-id: 4779
+          url-template: https://github.com/libsdl-org/SDL/archive/refs/tags/release-$version.tar.gz
+
+  # SDL2 Image support
+  - name: SDL2_image
+    buildsystem: autotools
+    config-opts:
+      - --disable-static
+      - --disable-gui
+    cleanup:
+      - '*.la'
+    sources:
+      - type: archive
+        url: https://github.com/libsdl-org/SDL_image/archive/refs/tags/release-2.6.2.tar.gz
+        sha256: 5d91ea72b449a161821ef51464d0767efb6fedf7a773f923c43e483dc137e362
+        x-checker-data:
+          type: anitya
+          project-id: 4781
+          url-template: https://github.com/libsdl-org/SDL_image/archive/refs/tags/release-$version.tar.gz
+
+  # SDL2 Networking support
+  - name: SDL2_net
+    buildsystem: autotools
+    config-opts:
+      - --disable-static
+      - --disable-gui
+    cleanup:
+      - '*.la'
+    sources:
+      - type: archive
+        url: https://github.com/libsdl-org/SDL_net/archive/refs/tags/release-2.2.0.tar.gz
+        sha256: 08d741282c0c22b82ed134f09cd319803132289cae06fb47b5ada2752faf0493
+        x-checker-data:
+          type: anitya
+          project-id: 4783
+          url-template: https://github.com/libsdl-org/SDL_net/archive/refs/tags/release-$version.tar.gz
