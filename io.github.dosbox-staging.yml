@@ -15,11 +15,11 @@ rename-appdata-file: dosbox-staging.metainfo.xml
 rename-icon: dosbox-staging
 
 finish-args:
-  - --device=all     # we need OpenGL and controller access
-  - --share=network  # IPX, libslirp and serial port emulation over UDP
-  - --socket=x11     # X11 output support
-  - --socket=wayland # Wayland output support
-  - --share=ipc      # necessary for x11
+  - --device=all          # we need OpenGL and controller access
+  - --share=network       # IPX, libslirp and serial port emulation over UDP
+  - --socket=fallback-x11 # X11 output support
+  - --socket=wayland      # Wayland output support
+  - --share=ipc           # necessary for x11
   - --socket=pulseaudio
   - --filesystem=home
 
@@ -27,6 +27,9 @@ modules:
 
   # Build FluidSynth for General MIDI emulation
   - shared-modules/linux-audio/fluidsynth2.json
+
+  # Build SDL2 with libdecor for Wayland support
+  - shared-modules/SDL2/SDL2-2.26.1-with-libdecor.json
 
   # Build iir1 DSP filter lib
   - name: iir1
@@ -45,7 +48,7 @@ modules:
     buildsystem: autotools
     cleanup:
       - "*.la"
-    sources: 
+    sources:
       - type: archive
         url: https://github.com/xiph/speexdsp/archive/refs/tags/SpeexDSP-1.2.1.tar.gz
         sha256: d17ca363654556a4ff1d02cc13d9eb1fc5a8642c90b40bd54ce266c3807b91a7
@@ -70,7 +73,7 @@ modules:
           type: anitya
           project-id: 220368
           url-template: https://github.com/munt/munt/archive/libmt32emu_$version.tar.gz
-  
+
   # SDL2 Networking support
   - name: SDL2_net
     buildsystem: autotools
