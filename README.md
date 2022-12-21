@@ -40,7 +40,7 @@ flatpak update
 - The SDL2 libraries against which DOSBox-Staging is built are provided by flatpak. This build only supports PulseAudio and dummy sound options, and likewise only supports X11, Wayland and dummy video options.
   - You will need a working PulseAudio (or PipeWire) setup on the host, or DOSBox-Staging will not start. If you don't care for audio, you can use the dummy SDL audio driver once you installed the flatpak by running:
     - ``flatpak override --env=SDL_AUDIODRIVER=dummy io.github.dosbox-staging``
-  - You will need a working X or XWayland setup on the host. Running from a console will not work, as the SDL2 build does not have kms or directfb output enabled. 
+  - You will need a working X11 or Wayland setup on the host. Running from a console will not work, as the SDL2 build does not have kms or directfb output enabled. If you run into problems with Wayland, you can force XWayland with ``flatpak override --env=SDL_VIDEODRIVER=x11 io.github.dosbox-staging``
 
 Please [create an issue](https://github.com/flathub/io.github.dosbox-staging/issues/new)
 if you find any other limitations specific to flatpak that should be documented here.
@@ -63,8 +63,8 @@ then enter the following commands in a terminal:
 ```bash
 git clone --recursive https://github.com/flathub/io.github.dosbox-staging.git
 cd io.github.dosbox-staging
-flatpak install flathub org.freedesktop.Sdk//21.08 -y
-flatpak-builder --force-clean --install --user -y build-dir io.github.dosbox-staging.yaml
+flatpak install flathub org.freedesktop.Sdk//22.08 -y
+flatpak-builder --force-clean --install --user -y build-dir io.github.dosbox-staging.yml
 ```
 
 If all goes well, the Flatpak will be installed after building. You can then
