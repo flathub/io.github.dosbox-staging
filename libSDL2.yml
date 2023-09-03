@@ -27,8 +27,8 @@ modules:
       - '*.la'
     sources:
       - type: archive
-        url: https://github.com/libsdl-org/SDL/archive/refs/tags/release-2.28.2.tar.gz
-        sha256: 5487bd782319e4065425ebb8746c14f7d7439077c5d409c6ac9f6a2275168ba5
+        url: https://github.com/libsdl-org/SDL/archive/refs/tags/release-2.28.3.tar.gz
+        sha256: c17455d6e0c484bfe634b8de6af4c608e86ee449c28e40af04064aa6643fe382
         x-checker-data:
           type: anitya
           project-id: 4779
