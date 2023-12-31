@@ -29,6 +29,45 @@ modules:
   # Build FluidSynth for General MIDI emulation
   - shared-modules/linux-audio/fluidsynth2.json
 
+  # Use libdecor enabled build of SDL2
+  - shared-modules/SDL2/SDL2-with-libdecor.json
+
+  - name: SDL2_image
+    buildsystem: autotools
+    config-opts:
+      - --disable-static
+    cleanup:
+      - /include
+      - /lib/cmake
+      - /share/aclocal
+      - /lib/pkgconfig
+    sources:
+      - type: archive
+        url: https://github.com/libsdl-org/SDL_image/archive/refs/tags/release-2.8.1.tar.gz
+        sha256: 2162abce9e4edb62267e0db5c2886058f0a16020a468eccc06d006df96ca972f
+        x-checker-data:
+          type: anitya
+          project-id: 4781
+          url-template: https://github.com/libsdl-org/SDL_image/archive/refs/tags/release-$version.tar.gz
+
+  - name: SDL2_net
+    buildsystem: autotools
+    config-opts:
+      - --disable-static
+    cleanup:
+      - /include
+      - /lib/cmake
+      - /share/aclocal
+      - /lib/pkgconfig
+    sources:
+      - type: archive
+        url: https://github.com/libsdl-org/SDL_net/archive/refs/tags/release-2.2.0.tar.gz
+        sha256: 08d741282c0c22b82ed134f09cd319803132289cae06fb47b5ada2752faf0493
+        x-checker-data:
+          type: anitya
+          project-id: 4783
+          url-template: https://github.com/libsdl-org/SDL_net/archive/refs/tags/release-$version.tar.gz
+
   # Build iir1 DSP filter lib
   - name: iir1
     buildsystem: cmake-ninja
