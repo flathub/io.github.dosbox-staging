@@ -10,8 +10,6 @@ build_options:
   cflags: -O3
   cxxflags: -O3
 
-
-
 rename-desktop-file: dosbox-staging.desktop
 rename-appdata-file: dosbox-staging.metainfo.xml
 rename-icon: dosbox-staging
