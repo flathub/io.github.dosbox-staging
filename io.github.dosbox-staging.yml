@@ -90,12 +90,22 @@ modules:
           project-id: 96796
           url-template: https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v$version/libslirp-v$version.tar.gz
 
+  - name: zlib-ng
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DZLIB_ENABLE_TESTS=false
+    sources:
+      - type: archive
+        url: https://github.com/zlib-ng/zlib-ng/archive/refs/tags/2.1.6.tar.gz
+        sha256: a5d504c0d52e2e2721e7e7d86988dec2e290d723ced2307145dedd06aeb6fef2
+        
   # Build DOSBox-Staging
   - name: dosbox-staging
     buildsystem: meson
     config-opts:
       - -Dbuildtype=release
-      - -Ddefault_library=shared
+      - -Ddefault_library=shared      
+      - -Duse_zlib_ng=sse2,ssse3
     sources:
       - type: archive
         url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.81.0.tar.gz
