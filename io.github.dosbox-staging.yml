@@ -25,7 +25,7 @@ finish-args:
   - --filesystem=xdg-run/pipewire-0:ro
 
 cleanup-commands:
-  - 'find /app -name 1024x1024 -exec rm -rf {} +'
+  - find /app -name 1024x1024 -exec rm -rf {} +
 
 modules:
 
@@ -102,7 +102,7 @@ modules:
           type: anitya
           project-id: 115592
           url-template: https://github.com/zlib-ng/zlib-ng/archive/refs/tags/$version.tar.gz
-        
+
   # Build DOSBox-Staging
   - name: dosbox-staging
     buildsystem: meson
@@ -112,8 +112,8 @@ modules:
       - -Duse_zlib_ng=sse2,ssse3
     sources:
       - type: archive
-        url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.81.0.tar.gz
-        sha256: 9b133dbf2fe8410bb475267a8f26844d56b9025079783ec6a4574841888ae600
+        url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.81.1.tar.gz
+        sha256: 2b389fdc338454f916240aab5a2ae5560d1dd9808d63c70f34ec9a91e60b535a
         x-checker-data:
           type: anitya
           project-id: 234902
