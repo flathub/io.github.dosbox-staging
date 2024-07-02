@@ -96,8 +96,8 @@ modules:
       - -DZLIB_ENABLE_TESTS=false
     sources:
       - type: archive
-        url: https://github.com/zlib-ng/zlib-ng/archive/refs/tags/2.2.0.tar.gz
-        sha256: 6e688263f704cd2e5e5dbab07b0fd0f494c24d393be7d15da02e7ae76b630b76
+        url: https://github.com/zlib-ng/zlib-ng/archive/refs/tags/2.2.1.tar.gz
+        sha256: ec6a76169d4214e2e8b737e0850ba4acb806c69eeace6240ed4481b9f5c57cdf
         x-checker-data:
           type: anitya
           project-id: 115592
