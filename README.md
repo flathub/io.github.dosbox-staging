@@ -66,7 +66,7 @@ then enter the following commands in a terminal:
 ```bash
 git clone --recursive https://github.com/flathub/io.github.dosbox-staging.git
 cd io.github.dosbox-staging
-flatpak install flathub org.freedesktop.Sdk//22.08 -y
+flatpak install flathub org.freedesktop.Sdk//24.08 -y
 flatpak-builder --force-clean --install --user -y build-dir io.github.dosbox-staging.yml
 ```
 
