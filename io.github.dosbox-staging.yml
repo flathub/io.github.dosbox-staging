@@ -15,7 +15,8 @@ rename-appdata-file: dosbox-staging.metainfo.xml
 rename-icon: dosbox-staging
 
 finish-args:
-  - --device=all          # we need OpenGL and controller access
+  - --device=dri          # default output is OpenGL
+  - --device=input        # gamepad access
   - --share=network       # IPX, libslirp and serial port emulation over UDP
   - --socket=fallback-x11 # X11 output support
   - --socket=wayland      # Wayland output support

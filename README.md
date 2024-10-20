@@ -44,6 +44,15 @@ flatpak update
     - ``flatpak override --user --env=SDL_AUDIODRIVER=pipewire io.github.dosbox-staging``
   - For video you will need a working X11 or Wayland setup on the host. Running from a console will not work, as the SDL2 build does not have kms or directfb output enabled. If you run into problems with Wayland, you can force XWayland with:
     - ``flatpak override --user --nosocket=fallback-x11 --nosocket=wayland --socket=x11 --env=SDL_VIDEODRIVER=x11 io.github.dosbox-staging``
+ - Local serial port cannot be used. This is due to flatpak restrictions, you need to set 
+   full flatpak device access to allow access to a local serial TTY (in addition your
+   user needs to have the right permissions to access the serial port, and the serial port
+   needs to implement all signals)
+ - By default this flatpak has 'network' access. This access can be removed, but will prevent the following use-cases:
+    - Novell IPX (emulated over TCP/IP)
+    - NE2000 adapter emulation for DOS or early Windows TCP/IP networking
+    - Serial port over UDP (for modem or nullmodem connections)
+
 
 Please [create an issue](https://github.com/flathub/io.github.dosbox-staging/issues/new)
 if you find any other limitations specific to flatpak that should be documented here.
