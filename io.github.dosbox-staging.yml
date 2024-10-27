@@ -10,9 +10,9 @@ build_options:
   cflags: -O3
   cxxflags: -O3
 
-rename-desktop-file: dosbox-staging.desktop
-rename-appdata-file: dosbox-staging.metainfo.xml
-rename-icon: dosbox-staging
+rename-desktop-file: org.dosbox-staging.dosbox-staging.desktop
+rename-appdata-file: org.dosbox-staging.dosbox-staging.metainfo.xml
+rename-icon: org.dosbox-staging.dosbox-staging
 
 finish-args:
   - --device=all          # we need OpenGL and controller access
