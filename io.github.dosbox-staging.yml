@@ -118,3 +118,5 @@ modules:
           type: anitya
           project-id: 234902
           url-template: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v$version.tar.gz
+      - type: file
+        path: org.dosbox-staging.dosbox-staging.metainfo.xml
