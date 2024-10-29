@@ -11,7 +11,7 @@ build_options:
   cxxflags: -O3
 
 rename-desktop-file: org.dosbox-staging.dosbox-staging.desktop
-rename-appdata-file: org.dosbox-staging.dosbox-staging.metainfo.xml
+rename-appdata-file: org.dosbox-staging.dosbox-staging.metainfo
 rename-icon: org.dosbox-staging.dosbox-staging
 
 finish-args:
