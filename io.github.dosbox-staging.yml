@@ -11,7 +11,7 @@ build_options:
   cxxflags: -O3
 
 rename-desktop-file: org.dosbox-staging.dosbox-staging.desktop
-rename-appdata-file: org.dosbox-staging.dosbox-staging.metainfo
+#rename-appdata-file: org.dosbox-staging.dosbox-staging.metainfo
 rename-icon: org.dosbox-staging.dosbox-staging
 
 finish-args:
@@ -120,3 +120,5 @@ modules:
           url-template: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v$version.tar.gz
       - type: file
         path: org.dosbox-staging.dosbox-staging.metainfo.xml
+    post-install:
+      - install -Dm644 ../org.dosbox-staging.dosbox-staging.metainfo.xml /app/share/metainfo/${FLATPAK_ID}.metainfo.xml
