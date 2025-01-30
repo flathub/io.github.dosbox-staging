@@ -83,8 +83,8 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: archive
-        url: https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v4.8.0/libslirp-v4.8.0.tar.gz
-        sha256: 2a98852e65666db313481943e7a1997abff0183bd9bea80caec1b5da89fda28c
+        url: https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v4.9.0/libslirp-v4.9.0.tar.gz
+        sha256: e744a32767668fe80e3cb3bd75d10d501f981e98c26a1f318154a97e99cdac22
         x-checker-data:
           type: anitya
           project-id: 96796
@@ -96,8 +96,8 @@ modules:
       - -DZLIB_ENABLE_TESTS=false
     sources:
       - type: archive
-        url: https://github.com/zlib-ng/zlib-ng/archive/refs/tags/2.2.2.tar.gz
-        sha256: fcb41dd59a3f17002aeb1bb21f04696c9b721404890bb945c5ab39d2cb69654c
+        url: https://github.com/zlib-ng/zlib-ng/archive/refs/tags/2.2.3.tar.gz
+        sha256: f2fb245c35082fe9ea7a22b332730f63cf1d42f04d84fe48294207d033cba4dd
         x-checker-data:
           type: anitya
           project-id: 115592
