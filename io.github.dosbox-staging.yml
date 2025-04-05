@@ -113,7 +113,7 @@ modules:
     sources:
       - type: archive
         url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.82.1.tar.gz
-        sha256: c9a5bcc41172a81f2c0c89603cd629e3eb7b3f8577fe1fcd8c1fca3c8ea0293d
+        sha256: 9d943d6610b6773cb0b27ba24904c85459757fbbfa0f34c72e76082132f77568
         x-checker-data:
           type: anitya
           project-id: 234902
