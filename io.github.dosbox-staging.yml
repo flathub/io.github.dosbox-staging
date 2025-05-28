@@ -83,8 +83,8 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: archive
-        url: https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v4.9.0/libslirp-v4.9.0.tar.gz
-        sha256: e744a32767668fe80e3cb3bd75d10d501f981e98c26a1f318154a97e99cdac22
+        url: https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v4.9.1/libslirp-v4.9.1.tar.gz
+        sha256: 3970542143b7c11e6a09a4d2b50f30a133473c41f15ed0bdcc3b7a1c450d9a5c
         x-checker-data:
           type: anitya
           project-id: 96796
@@ -112,8 +112,8 @@ modules:
       - -Duse_zlib_ng=sse2,ssse3
     sources:
       - type: archive
-        url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.82.1.tar.gz
-        sha256: 9d943d6610b6773cb0b27ba24904c85459757fbbfa0f34c72e76082132f77568
+        url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.82.2.tar.gz
+        sha256: d84c87e4b6ec3bdaac126c6354a5d2a94429987c55afbe76d0cb4536bae98428
         x-checker-data:
           type: anitya
           project-id: 234902
