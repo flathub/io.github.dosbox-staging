@@ -44,20 +44,6 @@ modules:
           project-id: 288170
           url-template: https://github.com/berndporr/iir1/archive/refs/tags/$version.tar.gz
 
-  # Speexdsp
-  - name: speexdsp
-    buildsystem: autotools
-    cleanup:
-      - '*.la'
-    sources:
-      - type: archive
-        url: https://github.com/xiph/speexdsp/archive/refs/tags/SpeexDSP-1.2.1.tar.gz
-        sha256: d17ca363654556a4ff1d02cc13d9eb1fc5a8642c90b40bd54ce266c3807b91a7
-        x-checker-data:
-          type: anitya
-          project-id: 8419
-          url-template: https://github.com/xiph/speexdsp/archive/refs/tags/SpeexDSP-$version.tar.gz
-
   # Build mt32emu for MT-32 MIDI emulation
   - name: mt32emu
     buildsystem: cmake-ninja
