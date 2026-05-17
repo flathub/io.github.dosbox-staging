@@ -54,8 +54,8 @@ modules:
       - -Dlibmt32emu_WITH_SYMBOL_VERSIONING=TRUE
     sources:
       - type: archive
-        url: https://github.com/munt/munt/archive/libmt32emu_2_7_3.tar.gz
-        sha256: e51f3475771c9d07116e6cb5ae2e095ef3b11b3107d92c01d3a1dc03be13ff98
+        url: https://github.com/munt/munt/archive/libmt32emu_2_8_0.tar.gz
+        sha256: 56f9dfde9fcea9c729848d028dfca05e916ba89867c9afe8eacc8325c5aac336
         x-checker-data:
           type: anitya
           project-id: 220368
