@@ -98,8 +98,8 @@ modules:
       - -Duse_zlib_ng=sse2,ssse3
     sources:
       - type: archive
-        url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.82.2.tar.gz
-        sha256: 387c97b373c3164ab5abbbc2b210bf94b5567057abe44ee1e8b4d4e725bd422c
+        url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.83.0.tar.gz
+        sha256: abde912658a75e0afd552b59bc3418572bddf1f4a9557440e24d7e7033f2306c
         x-checker-data:
           type: anitya
           project-id: 234902
