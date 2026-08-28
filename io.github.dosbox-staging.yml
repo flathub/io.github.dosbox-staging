@@ -10,9 +10,9 @@ build_options:
   cflags: -O3
   cxxflags: -O3
 
-rename-desktop-file: org.dosbox-staging.dosbox-staging.desktop
-#rename-appdata-file: org.dosbox-staging.dosbox-staging.metainfo
-rename-icon: org.dosbox-staging.dosbox-staging
+rename-desktop-file: org.dosbox_staging.dosbox_staging.desktop
+#rename-appdata-file: org.dosbox_staging.dosbox_staging.metainfo.xml
+rename-icon: org.dosbox_staging.dosbox_staging
 
 finish-args:
   - --device=all          # we need OpenGL and controller access
@@ -31,6 +31,8 @@ modules:
 
   # Build FluidSynth for General MIDI emulation
   - shared-modules/linux-audio/fluidsynth2.json
+
+  - shared-modules/SDL2/SDL2_image.json
 
   # Build iir1 DSP filter lib
   - name: iir1
@@ -89,22 +91,59 @@ modules:
           project-id: 115592
           url-template: https://github.com/zlib-ng/zlib-ng/archive/refs/tags/$version.tar.gz
 
-  # Build DOSBox-Staging
-  - name: dosbox-staging
-    buildsystem: meson
+  - name: opusfile
+    buildsystem: autotools
     config-opts:
-      - -Dbuildtype=release
-      - -Ddefault_library=shared
-      - -Duse_zlib_ng=sse2,ssse3
+      - --disable-static
     sources:
       - type: archive
-        url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.82.2.tar.gz
-        sha256: 387c97b373c3164ab5abbbc2b210bf94b5567057abe44ee1e8b4d4e725bd422c
+        url: https://ftp.osuosl.org/pub/xiph/releases/opus/opusfile-0.12.tar.gz
+        sha256: 118d8601c12dd6a44f52423e68ca9083cc9f2bfe72da7a8c1acb22a80ae3550b
+        x-checker-data:
+          type: anitya
+          project-id: 10353
+          url-template: https://ftp.osuosl.org/pub/xiph/releases/opus/opusfile-$version.tar.gz
+
+  - name: asio
+    buildsystem: simple
+    build-commands:
+      - cp -a include/. /app/include/
+    sources:
+      - type: archive
+        url: https://altushost-bul.dl.sourceforge.net/project/asio/asio/1.38.2%20%28Stable%29/asio-1.38.2.tar.gz
+        sha256: 4893ad026013d1f64bf111c606e6abd857bb953823a4744e449969f1063fd9ce
+        x-checker-data:
+          type: anitya
+          project-id: 117
+          url-template: https://altushost-bul.dl.sourceforge.net/project/asio/asio/$version%20%28Stable%29/asio-$version.tar.gz
+
+  # Build DOSBox-Staging
+  - name: dosbox-staging
+    buildsystem: cmake
+    config-opts:
+      - -DOPT_TESTS=OFF
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DUSE_SYSTEM_LIBS=ON
+    sources:
+      - type: archive
+        url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.83.0.tar.gz
+        sha256: 9b36be5a666784adaeffa560bd0950691f851a76bdb97e7ae3c989561e91caf3
         x-checker-data:
           type: anitya
           project-id: 234902
           url-template: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v$version.tar.gz
       - type: file
         path: org.dosbox-staging.dosbox-staging.metainfo.xml
+      - type: patch
+        path: fix-sdl2-includes.patch
     post-install:
-      - install -Dm644 ../org.dosbox-staging.dosbox-staging.metainfo.xml /app/share/metainfo/${FLATPAK_ID}.metainfo.xml
+      # DOSBox Staging expects shaders and other resources directly below
+      # /app/share/dosbox-staging, but the 0.83.x CMake install places them
+      # one level lower in the resources directory.
+      - cp -a /app/share/dosbox-staging/resources/. /app/share/dosbox-staging/
+      - rm -rf /app/share/dosbox-staging/resources
+      # CMake install copies a bunch of meson.build files which are not needed.
+      - find /app/share/dosbox-staging -name meson.build -delete
+      # Replace the upstream metadata with the Flatpak-specific metadata.
+      - rm -f /app/share/metainfo/org.dosbox_staging.dosbox_staging.metainfo.xml
+      - install -Dm644 org.dosbox-staging.dosbox-staging.metainfo.xml /app/share/metainfo/io.github.dosbox-staging.metainfo.xml

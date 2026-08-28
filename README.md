@@ -54,9 +54,6 @@ Under the default Flatpak configuration, the DOSBox-Staging configuration files 
 located in `~/.var/app/io.github.dosbox-staging/config/dosbox/`. To access it with a
 graphical file manager, you'll have to make hidden folders visible.
 
-The config file will not initially exist after installing DOSBox-Staging.
-You can create one from the DOSBox-Staging command line by running ``config -wcd``.
-
 ## Building from source
 
 Install Git, follow the
@@ -66,7 +63,7 @@ then enter the following commands in a terminal:
 ```bash
 git clone --recursive https://github.com/flathub/io.github.dosbox-staging.git
 cd io.github.dosbox-staging
-flatpak install flathub org.freedesktop.Sdk//24.08 -y
+flatpak install flathub org.freedesktop.Sdk//25.08 -y
 flatpak-builder --force-clean --install --user -y build-dir io.github.dosbox-staging.yml
 ```
 

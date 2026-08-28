@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright (C) 2020-2024  The DOSBox Staging Team -->
+<!-- Copyright (C) 2020-2026 The DOSBox Staging Team -->
 <component type="desktop">
-  <id>org.dosbox-staging.dosbox-staging</id>
+  <id>io.github.dosbox-staging</id>
+  <icon type="stock">io.github.dosbox-staging</icon>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0-or-later</project_license>
   <name>DOSBox Staging</name>
@@ -37,7 +38,9 @@
     <category>Emulator</category>
   </categories>
   <releases>
-    <release version="0.82.1" date="2025-04-03"/>
+    <release version="0.83.0" date="2026-08-27"/>
+    <release version="0.82.2" date="2025-06-17"/>
+    <release version="0.82.1" date="2025-04-04"/>
     <release version="0.82.0" date="2024-10-27"/>
     <release version="0.81.2" date="2024-07-21"/>
     <release version="0.81.1" date="2024-05-12"/>
@@ -64,7 +67,7 @@
     <control>console</control>
     <control>gamepad</control>
   </recommends>
-  <launchable type="desktop-id">org.dosbox-staging.dosbox-staging.desktop</launchable>
+  <launchable type="desktop-id">io.github.dosbox-staging.desktop</launchable>
   <developer_name>The DOSBox Staging Team</developer_name>
   <update_contact>john@johnnovak.net</update_contact>
   <url type="homepage">https://www.dosbox-staging.org/</url>
