@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright (C) 2020-2026 The DOSBox Staging Team -->
 <component type="desktop">
-  <id>org.dosbox-staging.dosbox-staging</id>
+  <id>io.github.dosbox-staging</id>
+  <icon type="stock">io.github.dosbox-staging</icon>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0-or-later</project_license>
   <name>DOSBox Staging</name>

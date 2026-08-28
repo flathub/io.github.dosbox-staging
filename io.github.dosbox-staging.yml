@@ -11,7 +11,7 @@ build_options:
   cxxflags: -O3
 
 rename-desktop-file: org.dosbox_staging.dosbox_staging.desktop
-rename-appdata-file: org.dosbox_staging.dosbox_staging.metainfo
+#rename-appdata-file: org.dosbox_staging.dosbox_staging.metainfo.xml
 rename-icon: org.dosbox_staging.dosbox_staging
 
 finish-args:
@@ -136,3 +136,14 @@ modules:
         path: org.dosbox-staging.dosbox-staging.metainfo.xml
       - type: patch
         path: fix-sdl2-includes.patch
+    post-install:
+      # DOSBox Staging expects shaders and other resources directly below
+      # /app/share/dosbox-staging, but the 0.83.x CMake install places them
+      # one level lower in the resources directory.
+      - cp -a /app/share/dosbox-staging/resources/. /app/share/dosbox-staging/
+      - rm -rf /app/share/dosbox-staging/resources
+      # CMake install copies a bunch of meson.build files which are not needed.
+      - find /app/share/dosbox-staging -name meson.build -delete
+      # Replace the upstream metadata with the Flatpak-specific metadata.
+      - rm -f /app/share/metainfo/org.dosbox_staging.dosbox_staging.metainfo.xml
+      - install -Dm644 org.dosbox-staging.dosbox-staging.metainfo.xml /app/share/metainfo/io.github.dosbox-staging.metainfo.xml
