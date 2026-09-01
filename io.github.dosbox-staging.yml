@@ -1,6 +1,6 @@
 app-id: io.github.dosbox-staging
 runtime: org.freedesktop.Platform
-runtime-version: '25.08'
+runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
 
 command: dosbox
@@ -104,6 +104,7 @@ modules:
           project-id: 10353
           url-template: https://ftp.osuosl.org/pub/xiph/releases/opus/opusfile-$version.tar.gz
 
+  # Asio - We only need the header files, so don't bother to build and install
   - name: asio
     buildsystem: simple
     build-commands:
