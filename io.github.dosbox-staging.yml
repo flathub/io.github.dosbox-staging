@@ -34,6 +34,16 @@ modules:
 
   - shared-modules/SDL2/SDL2_image.json
 
+  # MIDI soundfont for FluidSynth
+  - name: fluid_soundfont
+    buildsystem: simple
+    sources:
+      - type: archive
+        url: https://ftp.debian.org/debian/pool/main/f/fluid-soundfont/fluid-soundfont_3.1.orig.tar.gz
+        sha256: 2621acaa1c78e4abdb24bdd163230cc577e61276936d6aa6e3180582142f0343
+    build-commands:
+      - install -Dm644 FluidR3_GM.sf2 ${FLATPAK_DEST}/share/soundfonts/default.sf2
+
   # Build iir1 DSP filter lib
   - name: iir1
     buildsystem: cmake-ninja
@@ -117,6 +127,33 @@ modules:
           type: anitya
           project-id: 117
           url-template: https://altushost-bul.dl.sourceforge.net/project/asio/asio/$version%20%28Stable%29/asio-$version.tar.gz
+
+  # Build SpeexDSP for Nuked-SC55-CLAP
+  - name: speexdsp
+    buildsystem: autotools
+    config-opts:
+      - --disable-static
+    sources:
+      - type: archive
+        url: https://ftp.osuosl.org/pub/xiph/releases/speex/speexdsp-1.2.1.tar.gz
+        sha256: 8c777343e4a6399569c72abc38a95b24db56882c83dbdb6c6424a5f4aeb54d3d
+        x-checker-data:
+          type: anitya
+          project-id: 8419
+          url-template: https://ftp.osuosl.org/pub/xiph/releases/speex/speexdsp-$version.tar.gz
+
+  # Build Nuked-SC55 CLAP plugin
+  - name: nuked-sc55-clap
+    buildsystem: simple
+    build-commands:
+      - cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+      - cmake --build build --parallel ${FLATPAK_BUILDER_N_JOBS}
+      - install -Dm755 build/Nuked-SC55.clap ${FLATPAK_DEST}/plugins/Nuked-SC55.clap
+    sources:
+      - type: git
+        url: https://github.com/johnnovak/Nuked-SC55-CLAP.git
+        tag: v0.11.0
+        commit: 0081b1f3417e932dbf310089d15c6d12c4709092
 
   # Build DOSBox-Staging
   - name: dosbox-staging
