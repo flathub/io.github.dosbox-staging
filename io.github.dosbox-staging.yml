@@ -39,7 +39,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://ftp.debian.org/debian/pool/main/f/fluid-soundfont/fluid-soundfont_3.1.orig.tar.gz
+        url: 
+          https://ftp.debian.org/debian/pool/main/f/fluid-soundfont/fluid-soundfont_3.1.orig.tar.gz
         sha256: 2621acaa1c78e4abdb24bdd163230cc577e61276936d6aa6e3180582142f0343
     build-commands:
       - install -Dm644 FluidR3_GM.sf2 ${FLATPAK_DEST}/share/soundfonts/default.sf2
@@ -81,12 +82,14 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: archive
-        url: https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v4.9.6/libslirp-v4.9.6.tar.gz
-        sha256: 5bb4d30fd74042c23b4a0475f44d974a8e41dfdcf005476f03754bebc756b760
+        url: 
+          https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v4.9.7/libslirp-v4.9.7.tar.gz
+        sha256: d2567fa06a6357c7755d61c67293b2c0bf069b3f2173bde6b76cf768529a1938
         x-checker-data:
           type: anitya
           project-id: 96796
-          url-template: https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v$version/libslirp-v$version.tar.gz
+          url-template: 
+            https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v$version/libslirp-v$version.tar.gz
 
   - name: zlib-ng
     buildsystem: cmake-ninja
@@ -121,12 +124,14 @@ modules:
       - cp -a include/. /app/include/
     sources:
       - type: archive
-        url: https://altushost-bul.dl.sourceforge.net/project/asio/asio/1.38.2%20%28Stable%29/asio-1.38.2.tar.gz
+        url: 
+          https://altushost-bul.dl.sourceforge.net/project/asio/asio/1.38.2%20%28Stable%29/asio-1.38.2.tar.gz
         sha256: 4893ad026013d1f64bf111c606e6abd857bb953823a4744e449969f1063fd9ce
         x-checker-data:
           type: anitya
           project-id: 117
-          url-template: https://altushost-bul.dl.sourceforge.net/project/asio/asio/$version%20%28Stable%29/asio-$version.tar.gz
+          url-template: 
+            https://altushost-bul.dl.sourceforge.net/project/asio/asio/$version%20%28Stable%29/asio-$version.tar.gz
 
   # Build SpeexDSP for Nuked-SC55-CLAP
   - name: speexdsp
@@ -164,12 +169,14 @@ modules:
       - -DUSE_SYSTEM_LIBS=ON
     sources:
       - type: archive
-        url: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.83.0.tar.gz
+        url: 
+          https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.83.0.tar.gz
         sha256: 9b36be5a666784adaeffa560bd0950691f851a76bdb97e7ae3c989561e91caf3
         x-checker-data:
           type: anitya
           project-id: 234902
-          url-template: https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v$version.tar.gz
+          url-template: 
+            https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v$version.tar.gz
       - type: file
         path: org.dosbox-staging.dosbox-staging.metainfo.xml
       - type: patch
