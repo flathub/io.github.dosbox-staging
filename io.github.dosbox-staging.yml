@@ -15,7 +15,8 @@ rename-desktop-file: org.dosbox_staging.dosbox_staging.desktop
 rename-icon: org.dosbox_staging.dosbox_staging
 
 finish-args:
-  - --device=all          # we need OpenGL and controller access
+  - --device-if=all:!has-input-device # fallback in case of old flatpak version
+  - --device=input        # Game controller support
   - --share=network       # IPX, libslirp and serial port emulation over UDP
   - --socket=fallback-x11 # X11 output support
   - --socket=wayland      # Wayland output support
@@ -67,8 +68,8 @@ modules:
       - -Dlibmt32emu_WITH_SYMBOL_VERSIONING=TRUE
     sources:
       - type: archive
-        url: https://github.com/munt/munt/archive/libmt32emu_2_8_3.tar.gz
-        sha256: 81f8c462f46bc8901618762ae34cf9de93894ff81f41db73c79472fa3baef875
+        url: https://github.com/munt/munt/archive/libmt32emu_2_8_6.tar.gz
+        sha256: 9d351ccc4671027bdaf62ddc08aafdec8971ecb61835d9324bce949916cb0775
         x-checker-data:
           type: anitya
           project-id: 220368
@@ -170,8 +171,8 @@ modules:
     sources:
       - type: archive
         url: 
-          https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.83.0.tar.gz
-        sha256: 9b36be5a666784adaeffa560bd0950691f851a76bdb97e7ae3c989561e91caf3
+          https://github.com/dosbox-staging/dosbox-staging/archive/refs/tags/v0.83.1.tar.gz
+        sha256: 14c3703369e56125a425aea8ebb1a425823df58f9769f3e48b1b8ebbf2c6cf09
         x-checker-data:
           type: anitya
           project-id: 234902
